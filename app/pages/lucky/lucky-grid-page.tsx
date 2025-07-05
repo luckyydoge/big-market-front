@@ -1,7 +1,9 @@
 "use client"
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, {useState, useRef, useEffect, useContext} from 'react'
-// @ts-ignore
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
 import {LuckyGrid} from '@lucky-canvas/react'
 import {draw, queryRaffleAwardList} from "@/apis";
 import {RaffleAwardVO} from "@/types/RaffleAwardVO";
@@ -10,7 +12,8 @@ import {RaffleAwardVO} from "@/types/RaffleAwardVO";
  * 大转盘文档：https://100px.net/docs/grid.html
  * @constructor
  */
-// @ts-ignore
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
 export function LuckyGridPage({handleRefresh}) {
     const [prizes, setPrizes] = useState([{}])
     const myLucky = useRef()
@@ -119,7 +122,7 @@ export function LuckyGridPage({handleRefresh}) {
         const userId = String(queryParams.get('userId'));
         const activityId = Number(queryParams.get('activityId'));
 
-        let result = await draw(userId, activityId);
+        const result = await draw(userId, activityId);
         const {code, info, data} = await result.json();
         if (code != "0000") {
             window.alert("随机抽奖失败 code:" + code + " info:" + info)
@@ -145,6 +148,7 @@ export function LuckyGridPage({handleRefresh}) {
     const [defaultStyle] = useState([{background: "#b8c5f2"}])
 
     useEffect(() => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         queryRaffleAwardListHandle().then(r => {
         });
     }, [])
@@ -160,21 +164,25 @@ export function LuckyGridPage({handleRefresh}) {
             defaultStyle={defaultStyle}
             buttons={buttons}
             onStart={() => { // 点击抽奖按钮会触发star回调
-                // @ts-ignore
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-expect-error
                 myLucky.current.play()
                 setTimeout(() => {
                     // 抽奖接口
                     randomRaffleHandle().then(prizeIndex => {
-                            // @ts-ignore
+                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                            // @ts-expect-error
                             myLucky.current.stop(prizeIndex);
                         }
                     );
                 }, 2500)
             }}
             onEnd={
-                // @ts-ignore
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-expect-error
                 prize => {
                     // 加载数据
+                    // eslint-disable-next-line @typescript-eslint/no-unused-vars
                     queryRaffleAwardListHandle().then(r => {
                     });
                     // 展示奖品

@@ -1,8 +1,10 @@
+"use client";
 import {queryUserActivityAccount} from "@/apis";
 import React, {useEffect, useState} from "react";
 import {UserActivityAccountVO} from "@/types/UserActivityAccountVO";
 
-// @ts-ignore
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
 export function ActivityAccount({refresh}) {
     const [dayCount, setDayCount] = useState(0)
 
@@ -22,6 +24,7 @@ export function ActivityAccount({refresh}) {
     }
 
     useEffect(() => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         queryUserActivityAccountHandle().then(r => {
         });
     }, [refresh])

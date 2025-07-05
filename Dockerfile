@@ -5,6 +5,8 @@
 # -----------------------------------------------------------------------------
 FROM node:18-alpine AS builder
 
+RUN npm config set registry https://registry.npmmirror.com/
+
 # 设置工作目录
 WORKDIR /app
 
@@ -14,7 +16,9 @@ COPY package.json package-lock.json ./
 
 # 安装所有依赖 (包括开发依赖)
 # npm ci 命令会根据 package-lock.json 精确安装，保证构建可重复性
-RUN npm ci
+RUN npm ci --verbose
+
+ENV API_HOST_URL="https://project.rabbit-dog.xyz/back/"
 
 # 复制所有应用程序文件
 # .dockerignore 文件将确保跳过不需要的文件
@@ -45,16 +49,18 @@ COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/package.json ./package.json
 
+COPY --from=builder /app/node_modules ./node_modules
+
 # ⚠️ 注意: Next.js 12+ 版本在生产模式下不需要 node_modules 就可以运行
 # 这是因为所有必要的依赖都被打包到了 .next 目录中。
 # 如果你的应用依赖于运行时需要访问的非打包模块 (例如外部的 require)，
 # 你可能需要复制生产依赖。对于大多数 Next.js 应用，这一步可以省略。
 # 如果你确定需要生产依赖，可以取消注释下面这行：
 # COPY --from=builder /app/node_modules ./node_modules
-
+ENV API_HOST_URL="https://project.rabbit-dog.xyz/back/"
 # 暴露 Next.js 应用程序监听的端口
-EXPOSE 3000
+EXPOSE 29999
 
 # 启动 Next.js 应用程序
 # npm start 命令会运行 package.json 中定义的 "start" 脚本
-CMD ["npm", "start"]
+CMD ["npm", "start", "--", "-p", "29999"]

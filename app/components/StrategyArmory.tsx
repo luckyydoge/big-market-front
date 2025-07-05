@@ -1,3 +1,4 @@
+"use client";
 import {activityStrategyArmory} from "@/apis";
 
 export function StrategyArmory() {

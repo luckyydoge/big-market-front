@@ -1,7 +1,9 @@
+"use client";
 import {calendarSignRebate, isCalendarSignRebate} from "@/apis";
 import React, {useEffect, useState} from "react";
 
-// @ts-ignore
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
 export function CalendarSign({handleRefresh}) {
 
     const [sign, setSign] = useState(false);
@@ -50,9 +52,11 @@ export function CalendarSign({handleRefresh}) {
     const month = (`0${currentDate.getMonth() + 1}`).slice(-2); // 月份是从0开始的
     const day = (`0${currentDate.getDate()}`).slice(-2);
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const formattedDate = `${year}-${month}-${day}`;
 
     useEffect(() => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         isCalendarSignRebateHandle().then(r => {
         });
     }, [])

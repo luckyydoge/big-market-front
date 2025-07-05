@@ -36,6 +36,7 @@ export const queryRaffleAwardList = (userId?: string, activityId?: number) => {
             "    \"code\": \"0001\",\n" +
             "    \"info\": \"调用失败\",\n" +
             "    \"data\": [\n" +
+            "    \"error\": \"error\"" + error +
             "}");
     }
 }
@@ -62,6 +63,7 @@ export const draw = (userId?: string, activityId?: number) => {
             "    \"code\": \"0001\",\n" +
             "    \"info\": \"调用失败\",\n" +
             "    \"data\": [\n" +
+            "    \"error\": \"error\"" + error +
             "}");
     }
 }
@@ -88,6 +90,7 @@ export const queryUserActivityAccount = (userId?: string, activityId?: number) =
             "    \"code\": \"0001\",\n" +
             "    \"info\": \"调用失败\",\n" +
             "    \"data\": [\n" +
+            "    \"error\": \"error\"" + error +
             "}");
     }
 }
@@ -109,6 +112,7 @@ export const calendarSignRebate = (userId?: string) => {
             "    \"code\": \"0001\",\n" +
             "    \"info\": \"调用失败\",\n" +
             "    \"data\": [\n" +
+            "    \"error\": \"error\"" + error +
             "}");
     }
 }
@@ -130,6 +134,7 @@ export const isCalendarSignRebate = (userId?: string) => {
             "    \"code\": \"0001\",\n" +
             "    \"info\": \"调用失败\",\n" +
             "    \"data\": [\n" +
+            "    \"error\": \"error\"" + error +
             "}");
     }
 }
@@ -156,6 +161,7 @@ export const queryRaffleStrategyRuleWeight = (userId?: string, activityId?: numb
             "    \"code\": \"0001\",\n" +
             "    \"info\": \"调用失败\",\n" +
             "    \"data\": [\n" +
+            "    \"error\": \"error\"" + error +
             "}");
     }
 }

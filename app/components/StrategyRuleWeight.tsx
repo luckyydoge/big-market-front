@@ -1,8 +1,12 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
+"use client";
 import {queryRaffleStrategyRuleWeight} from "@/apis";
 import {useEffect, useState} from "react";
 import {StrategyRuleWeightVO} from "@/types/StrategyRuleWeightVO";
 
-// @ts-ignore
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
 export function StrategyRuleWeight({refresh}) {
 
     const [strategyRuleWeightVOList, setStrategyRuleWeightVOList] = useState<StrategyRuleWeightVO[]>([]);
@@ -21,12 +25,13 @@ export function StrategyRuleWeight({refresh}) {
     }
 
     // 这是你的进度条组件
-    // @ts-ignore
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
     const ProgressBar = ({index, total, completed, awards}) => {
         // 计算完成的百分比
         const percentage = (completed / total) * 100;
 
-        // @ts-ignore
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         return (
             <div className="w-full" style={{width: '250px'}}> {/* 设置外部容器宽度为800px */}
                 <div className="flex items-center"> {/* 使用flex布局对齐文本和进度条 */}
@@ -51,7 +56,8 @@ export function StrategyRuleWeight({refresh}) {
                 {
                     awards && <div className="mt-2">
                         <div className="text-xs text-black">必中奖品范围</div>
-                        {// @ts-ignore
+                        {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+                        {// @ts-expect-error
 
                             awards.map((award, idx) => (
 
@@ -67,6 +73,7 @@ export function StrategyRuleWeight({refresh}) {
     };
 
     useEffect(() => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         queryRaffleStrategyRuleWeightHandle().then(r => {
         });
     }, [refresh])

@@ -1,13 +1,15 @@
 "use client"
 
 import React, {useEffect, useRef, useState} from 'react'
-// @ts-ignore
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
 import {LuckyWheel} from '@lucky-canvas/react'
 
 import {queryRaffleAwardList, draw} from '@/apis'
 import {RaffleAwardVO} from "@/types/RaffleAwardVO";
 
-// @ts-ignore
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
 export function LuckyWheelPage({handleRefresh}) {
     const [prizes, setPrizes] = useState([{}])
     const myLucky = useRef()
@@ -68,6 +70,7 @@ export function LuckyWheelPage({handleRefresh}) {
     }
 
     useEffect(() => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         queryRaffleAwardListHandle().then(r => {
         });
     }, [])
@@ -81,12 +84,14 @@ export function LuckyWheelPage({handleRefresh}) {
             prizes={prizes}
             buttons={buttons}
             onStart={() => {
-                // @ts-ignore
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-expect-error
                 myLucky.current.play()
                 setTimeout(() => {
                     // 抽奖接口
                     randomRaffleHandle().then(prizeIndex => {
-                            // @ts-ignore
+                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                            // @ts-expect-error
                             myLucky.current.stop(prizeIndex);
                         }
                     );
@@ -94,7 +99,8 @@ export function LuckyWheelPage({handleRefresh}) {
                 }, 2500)
             }}
             onEnd={
-                // @ts-ignore
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-expect-error
                 prize => {
                     alert('恭喜你抽到【' + prize.fonts[0].text + '】奖品ID【' + prize.fonts[0].id + '】')
                 }
